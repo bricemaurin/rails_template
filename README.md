@@ -1,24 +1,25 @@
-# README
+Base rails 5 app including:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- bootstrap 4
+- font awesome 5
+- devise
+- sidekiq, incl. admin (need redis on heroku)
 
-Things you may want to cover:
 
-* Ruby version
+# How to Use
 
-* System dependencies
+- Terminal > 1st tab:
 
-* Configuration
+```redis-server```
 
-* Database creation
+- Terminal > 2nd tab:
 
-* Database initialization
+```puma -t 10:15 -w 5```
 
-* How to run the test suite
+- Terminal > 3rd tab:
 
-* Services (job queues, cache servers, search engines, etc.)
+```bundle exec sidekiq -c 10```
 
-* Deployment instructions
+# Purge queue
 
-* ...
+Sidekiq.redis { |conn| conn.flushdb }
